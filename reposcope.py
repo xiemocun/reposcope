@@ -52,7 +52,7 @@ def scan(repo: str, exts: set[str], max_files: int = 4000) -> list[dict]:
                     text = fh.read()
             except OSError:
                 continue
-            lines = text.count("\n") + 1
+            lines = text.count("\n") + (0 if text.endswith("\n") else 1)
             symbols = DEF_RE.findall(text)
             files.append({
                 "path": rel,
